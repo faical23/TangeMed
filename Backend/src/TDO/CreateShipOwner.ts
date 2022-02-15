@@ -1,6 +1,6 @@
 import {IsNotEmpty,IsEmail} from 'class-validator'
 
-export class CreateCostumerDTO {
+export class CreateShipOwnerTDO {
   
   @IsNotEmpty()
   name: string;
@@ -12,5 +12,9 @@ export class CreateCostumerDTO {
   phone: string;
 
   @IsNotEmpty()
-  city: string;
+  nationality: string;
+
+  @IsNotEmpty()
+  description: string;
+  
 }

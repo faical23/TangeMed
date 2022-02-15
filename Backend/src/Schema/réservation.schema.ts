@@ -6,9 +6,9 @@ import {Ship} from './ship.schema'
 import * as mongoose from 'mongoose';
 
 
-export type RéservationDocument = Réservation & Document;
+export type ReservationDocument = Reservation & Document;
 @Schema()
-export class Réservation {
+export class Reservation {
     @Prop()
     reference: string;
   
@@ -20,6 +20,9 @@ export class Réservation {
 
     @Prop({type: mongoose.Schema.Types.ObjectId, ref: Qaie.name })
     qaie: Qaie;
+
+    @Prop()
+    isparked:boolean
 }
 
-export const RéservationSchema = SchemaFactory.createForClass(Réservation);
+export const RéservationSchema = SchemaFactory.createForClass(Reservation);

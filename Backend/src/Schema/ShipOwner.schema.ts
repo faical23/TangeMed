@@ -1,10 +1,12 @@
 /// TODO: create schema
-import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Prop, Schema, SchemaFactory} from '@nestjs/mongoose';
 import { Document } from 'mongoose';
+import { Ship } from './ship.schema';
+import * as mongoose from 'mongoose';
 
-export type CostumerDocument = Costumer & Document;
+export type ShipOwnerDocument = ShipOwner & Document;
 @Schema()
-export class Costumer {
+export class ShipOwner {
   @Prop()
   name: string;
 
@@ -15,11 +17,14 @@ export class Costumer {
   phone: string;
 
   @Prop()
-  city: string;
+  nationality: string;
 
   @Prop()
-  created_at: Date;
+  description: string;
+
+  @Prop({type: [{type: mongoose.Schema.Types.ObjectId, ref: Ship.name }],})
+  ships: Ship;
 
 }
 
-export const CostumerSchema = SchemaFactory.createForClass(Costumer);
+export const ShipOwnerSchema = SchemaFactory.createForClass(ShipOwner);

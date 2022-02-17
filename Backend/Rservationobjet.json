@@ -1,0 +1,20 @@
+{
+    "ShipOwner":"",
+    "email":"",
+    "phone":"",
+    "nationality":"",
+    "description":"",
+    "Shipname":"",
+    "nationalitynationality":"",
+    "capacitycontainers":"",
+    "containers":[{
+        "reference":"",
+        "isvalide":"",
+        "weight":"",
+        "typemarchendise":""
+    }],
+    "reservationreference":"",
+    "reservationdate":"",
+    "qaie":"",
+    "isparked":""
+}

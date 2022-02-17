@@ -1,20 +1,23 @@
-import {IsNotEmpty,IsEmail} from 'class-validator'
+import {IsNotEmpty,IsEmail,IsArray} from 'class-validator'
 
 export class CreateShipOwnerTDO {
   
   @IsNotEmpty()
-  name: string;
+  nameOwnerShip: string;
 
   @IsEmail()
-  email: string;
+  emailOwnerShip: string;
 
   @IsNotEmpty()
-  phone: string;
+  phoneOwnerShip: string;
 
   @IsNotEmpty()
-  nationality: string;
+  nationalityOwnerShip: string;
 
   @IsNotEmpty()
-  description: string;
+  descriptionOwnerShip: string;
+
+  @IsArray()
+  ships: string[];
   
 }

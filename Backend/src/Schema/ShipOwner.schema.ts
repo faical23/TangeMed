@@ -8,19 +8,19 @@ export type ShipOwnerDocument = ShipOwner & Document;
 @Schema()
 export class ShipOwner {
   @Prop()
-  name: string;
+  nameOwnerShip: string;
 
   @Prop()
-  email: string;
+  emailOwnerShip: string;
 
   @Prop()
-  phone: string;
+  phoneOwnerShip: string;
 
   @Prop()
-  nationality: string;
+  nationalityOwnerShip: string;
 
   @Prop()
-  description: string;
+  descriptionOwnerShip: string;
 
   @Prop({type: [{type: mongoose.Schema.Types.ObjectId, ref: Ship.name }],})
   ships: Ship;

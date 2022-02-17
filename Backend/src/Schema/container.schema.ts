@@ -11,6 +11,7 @@ export class Container {
   @Prop()
   isvalide: boolean;
 
+
   @Prop()
   weight: number;
 

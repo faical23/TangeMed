@@ -1,4 +1,4 @@
-import {IsNotEmpty} from 'class-validator'
+import {IsNotEmpty,IsArray} from 'class-validator'
 
 export class CreateShipTDO {
   
@@ -10,5 +10,8 @@ export class CreateShipTDO {
       
     @IsNotEmpty()
     capacitycontainers:number;
+
+    @IsArray()
+    containers:string[];
   
 }

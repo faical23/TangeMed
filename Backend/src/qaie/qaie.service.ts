@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { CreateQaieTDO } from '../TDO/CreateQaie.tdo
+import { CreateQaieTDO } from '../TDO/CreateQaie.tdo'
 import { Qaie, QaieDocument } from '../Schema/qaie.schema';
 @Injectable()
 export class QaieService {

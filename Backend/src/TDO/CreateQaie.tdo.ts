@@ -4,5 +4,5 @@ export class CreateQaieTDO {
   
     @IsNotEmpty()
     sizeforday:number;
-  
+_  
 }

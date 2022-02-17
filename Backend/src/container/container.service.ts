@@ -8,10 +8,10 @@ import { Container, ContainerDocument } from '../Schema/container.schema';
 export class ContainerService {
     constructor(
         @InjectModel(Container.name) private readonly ContainerModel: Model<ContainerDocument>,
-      ) {}
-        
-      async create(createcontainertdo: CreateContainerTDO){
-        return await new this.ContainerModel({createcontainertdo}).save();
+      ) {}    
+      async create(createcontainertdo: CreateContainerTDO)
+      {
+        const containerArr = createcontainertdo.containers
+        return await this.ContainerModel.insertMany(containerArr)
       }
-
 }

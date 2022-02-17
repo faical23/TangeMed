@@ -1,12 +1,13 @@
-import {IsNotEmpty} from 'class-validator'
+import {IsNotEmpty,IsArray} from 'class-validator'
 
 export class CreateContainerTDO {
-  
-  
+
     @IsNotEmpty()
-    weight: number;
-      
-    @IsNotEmpty()
-    typemarchendise: string;
-      
+    @IsArray()
+    containers:[{
+        reference: string;
+        weight: number;
+        typemarchendise: string;
+        isvalide:boolean;
+    }];      
 }

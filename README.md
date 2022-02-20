@@ -33,7 +33,8 @@ Start the server
 
 ```bash
   cd backend
-  node app.js
+  npm run seed
+  npm start
 ```
 
 Run react App
@@ -43,3 +44,33 @@ Run react App
   npm start
 ```
 
+objet for testing réservation
+{
+	"nameOwnerShip":"faical ship",
+	"emailOwnerShip":"faical@gmail.com",
+	"phoneOwnerShip":"0619887328",
+	"nationalityOwnerShip":"morocco",
+	"descriptionOwnerShip":"lorem lorem",
+	"capacitycontainers":887,
+	"nationality":"spain",
+	"name":"faical entreprise",
+	"containers":[
+		{
+			"typemarchendise":"electronique",
+			"weight":69,
+			"reference":"746HDGDF"
+		},
+		{
+			"typemarchendise":"electronique",
+			"weight":69,
+			"reference":"746HDGDF"
+		},
+		{
+			"typemarchendise":"electronique",
+			"weight":69,
+			"reference":"746HDGDF"
+		}
+	],
+	"date":"2022/08/15",
+	"idqaie":"621233a8bb4311dbd555f2ba"
+ }

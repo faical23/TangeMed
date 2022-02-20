@@ -6,6 +6,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { ContainerModule } from '../container/container.module'
 import { ShipModule } from '../ship/ship.module'
 import { ShipOwnerModule } from '../ship-owner/shipowner.module'
+import { QaieModule } from '../qaie/qaie.module'
 
 
 @Module({
@@ -13,7 +14,8 @@ import { ShipOwnerModule } from '../ship-owner/shipowner.module'
     MongooseModule.forFeature([{ name: Reservation.name, schema: RéservationSchema }]),
     ContainerModule,
     ShipModule,
-    ShipOwnerModule],
+    ShipOwnerModule,
+    QaieModule],
   providers: [ReservationService],
   controllers: [ReservationController],
 })

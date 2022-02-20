@@ -1,4 +1,4 @@
-import { Controller,Post,Body } from '@nestjs/common';
+import { Controller,Post,Body,Get,Delete,Param } from '@nestjs/common';
 import { ReservationService } from './reservation.service';
 import { CreateReservationrTDO } from '../TDO/CreateRéservation.tdo';
 import { ContainerService } from '../container/container.service';
@@ -6,8 +6,8 @@ import { CreateContainerTDO } from '../TDO/CreateContainer.tdo';
 import { ShipService } from '../ship/ship.service'
 import { CreateShipTDO } from '../TDO/CreateShip.tdo'
 import { ShipOwnerService } from '../ship-owner/shipowner.service'
-import { CreateShipOwnerTDO } from '../TDO/CreateShipOwner'
-
+import { QaieService } from '../qaie/qaie.service'
+import { v4 as uuidv4 } from 'uuid';
 
 
 @Controller('reservation')
@@ -17,13 +17,15 @@ export class ReservationController {
                 private readonly containerservice: ContainerService,
                 private readonly shipservice: ShipService,
                 private readonly shipownerservice: ShipOwnerService,
+                private readonly qaieservice:QaieService
     ) {}
 
     @Post()
-    async create( @Body() reservationtdo: CreateReservationrTDO,
+    async create(
+                  @Body() Request,
+                  @Body() reservationtdo: CreateReservationrTDO,
                   @Body() createcontainertdo: CreateContainerTDO,
                   @Body() createshiptdo : CreateShipTDO,
-                  @Body() createshipownertdo : CreateShipOwnerTDO
                 ) 
     {
 
@@ -43,18 +45,45 @@ export class ReservationController {
       const NewShip = await this.shipservice.create(createshiptdo);
 
       //// CREATE SHIP OWNER
-      createshipownertdo ={
-        nameOwnerShip:createshipownertdo.nameOwnerShip,
-        emailOwnerShip:createshipownertdo.emailOwnerShip,
-        phoneOwnerShip:createshipownertdo.phoneOwnerShip,
-        nationalityOwnerShip:createshipownertdo.nationalityOwnerShip,
-        descriptionOwnerShip:createshipownertdo.descriptionOwnerShip,
+      const createshipownertdo ={
+        nameOwnerShip:Request.nameOwnerShip,
+        emailOwnerShip:Request.emailOwnerShip,
+        phoneOwnerShip:Request.phoneOwnerShip,
+        nationalityOwnerShip:Request.nationalityOwnerShip,
+        descriptionOwnerShip:Request.descriptionOwnerShip,
         ships:[NewShip._id]
       }
       const  NewShipOwner = await this.shipownerservice.create(createshipownertdo);
 
+      ///// UPDATE QAIE
+      const Updateqaiereserved = await this.qaieservice.update(Request)
 
-      return NewShipOwner
+
+      //// CREATE RESERVATION
+      const reservationdate = {
+         date:new Date(Request.date),
+         qaie:Request.idqaie,
+         isparked:false,
+         ships:NewShip._id,
+         reference:uuidv4()
+      }
+      const createreservation = await this.reservationservice.create(reservationdate)
+
+      return createreservation
     }
 
+    @Get()
+    async index() {
+      return await this.reservationservice.findAll();
+    }
+
+    @Get(':id')
+    async find(@Param('id') id: string) {
+      return await this.reservationservice.findOne(id)
+    }
+
+    @Delete(':id')
+    async delete(@Param('id') id: string) {
+      return await this.reservationservice.delete(id);
+    }
 }

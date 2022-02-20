@@ -1,21 +1,25 @@
-/// TODO: create schema
-import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
-
+import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
+import { Document } from "mongoose";
+import { Factory } from "nestjs-seeder";
+ 
 export type QaieDocument = Qaie & Document;
 @Schema()
-export class Qaie {
+export class Qaie{
+    @Factory(faker => faker.date.past())
     @Prop()
-    reference: string;
-  
+    availabledate: Date;
+
+    @Factory('true')
     @Prop()
     state: boolean;
-  
+
+    @Factory(150)
     @Prop()
     sizeforday: number;
 
+    @Factory(faker => faker.name.findName())
     @Prop()
-    availabledate:Date;
+    reference: string;
 }
-
-export const QaieSchema = SchemaFactory.createForClass(Qaie);
+ 
+export const qaieSchema = SchemaFactory.createForClass(Qaie);
